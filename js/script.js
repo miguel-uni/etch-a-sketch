@@ -38,7 +38,8 @@ function paintSquares() {
     
     allSquares.forEach((square) => {
         square.addEventListener("mouseover", () => {
-            square.classList.add('active');
+            const color = getRandomColor();
+            square.style.backgroundColor = color;
         });
     });
 };
@@ -59,6 +60,15 @@ function changeQuantityOfSquares() {
             return;
         };
     });
+};
+
+function getRandomColor() {
+    const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+    const r = randomBetween(0, 255);
+    const g = randomBetween(0, 255);
+    const b = randomBetween(0, 255);
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+    return rgb;
 };
 
 createParentDivs(16);
