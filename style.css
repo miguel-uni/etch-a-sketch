@@ -1,10 +1,15 @@
-#general-container {
+body {
+    font-family: Verdana, sans-serif;
+}
+
+#container {
     display: flex;
+    margin: 50px;
+    gap: 50px;
 }
 
 #grid-container {
-    margin: 50px;
-    border: 1px solid black;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.178);
 }
 
 .square-container {
@@ -15,7 +20,6 @@
 .square {
     position: relative;
 	width: 600px;
-    border: 1px solid rgba(0, 0, 0, 0.089);
 }
 
 .square::before {
@@ -24,3 +28,26 @@
     padding-top: 100%;
 }
 
+#button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+button {
+    font-size: 16px;
+    background-color: rgb(201, 201, 201);
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1);
+}
