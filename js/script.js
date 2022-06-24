@@ -33,18 +33,18 @@ function deleteDivs(cssSelector) {
     };
 };
 
-function paintSquares() {
-    let allSquares = document.querySelectorAll(".square");
-    
+function paintSquares(color) {
+    let allSquares = document.querySelectorAll('.square');
+
     allSquares.forEach((square) => {
-        square.addEventListener("mouseover", () => {
-            const color = getRandomColor();
+        square.addEventListener('mouseover', () => {
             square.style.backgroundColor = color;
         });
     });
 };
 
-function changeQuantityOfSquares() {
+// when button clicked and number inputted change parent and child divs density to number
+function setNewDivs() {
     const button = document.getElementById('squares-selection');
     
     button.addEventListener('click', () => {
@@ -55,7 +55,7 @@ function changeQuantityOfSquares() {
             deleteDivs('square-container');
             createParentDivs(num);
             createChildDivs(num);
-            paintSquares();
+            paintSquares(defaulColor);
         } else {
             return;
         };
@@ -71,7 +71,52 @@ function getRandomColor() {
     return rgb;
 };
 
+// function to use random colors to paint when button is clicked
+function setRainbowMode() {
+    const button = document.getElementById('rainbow-button');
+
+    button.addEventListener('click', () => {
+        let allSquares = document.querySelectorAll('.square');
+
+        allSquares.forEach((square) => {
+            square.addEventListener('mouseover', () => {
+                let rgb = getRandomColor();
+                square.style.backgroundColor = rgb;
+            });
+        });
+    });
+};
+
+// function to change which color is used depending on what button is clicked
+function setButtonMode(id, color) {
+    const button = document.getElementById(id);
+
+    button.addEventListener('click', () => {
+        paintSquares(color);
+    });
+};
+
+// function to clear the grid when clicked 
+function clearGrid() {
+    const button = document.getElementById('clear-button');
+
+    button.addEventListener('click', () => {
+        deleteDivs('#child-div');
+        deleteDivs('square-container');
+        createParentDivs(16);
+        createChildDivs(16);
+        paintSquares(defaulColor);
+    });
+};
+
+
+const defaulColor = 'black';
+
 createParentDivs(16);
 createChildDivs(16);
-paintSquares();
-changeQuantityOfSquares();
+paintSquares(defaulColor);
+setNewDivs();
+setRainbowMode();
+setButtonMode('eraser-button', 'white');
+setButtonMode('color-button', defaulColor);
+clearGrid();
