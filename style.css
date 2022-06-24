@@ -3,23 +3,24 @@
 }
 
 #grid-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin: 50px;
+    border: 1px solid black;
 }
 
 .square-container {
     display: flex;
+    max-width: 600px;
 }
 
 .square {
-    width: 25px;
-    height: 25px;
-    border: 1px solid black;
-    margin: 2px;
+    position: relative;
+	width: 600px;
+    border: 1px solid rgba(0, 0, 0, 0.089);
 }
 
-.active {
-    background-color: blue;
-  }
+.square::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
