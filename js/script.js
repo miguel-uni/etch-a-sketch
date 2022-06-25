@@ -1,6 +1,6 @@
 function createParentDivs(num) {
     for (let i = 1; i <= num; i++) {
-        const gridContainer = document.getElementById('grid-container');
+        const gridContainer = document.querySelector('.grid-container');
         const parentDiv = document.createElement('div');
 
         parentDiv.setAttribute('id', i);
@@ -44,7 +44,7 @@ function paintSquares(color) {
 };
 
 // when button clicked and number inputted change parent and child divs density to number
-function setNewDivs() {
+function setNewSize() {
     const button = document.getElementById('squares-selection');
     
     button.addEventListener('click', () => {
@@ -109,14 +109,13 @@ function clearGrid() {
     });
 };
 
-
-const defaulColor = 'black';
+const defaulColor = '#333';
 
 createParentDivs(16);
 createChildDivs(16);
 paintSquares(defaulColor);
-setNewDivs();
+setNewSize();
 setRainbowMode();
-setButtonMode('eraser-button', 'white');
+setButtonMode('eraser-button', '#fefefe');
 setButtonMode('color-button', defaulColor);
 clearGrid();
