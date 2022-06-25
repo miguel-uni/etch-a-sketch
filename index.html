@@ -6,20 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
     <script src="/js/script.js" defer></script>
 </head>
 <body>
-    <div id="container">
-        <div id="button-container">
-            <div><button id="squares-selection">Pick number of squares</button></div>
-            <div><button id="color-button">Color mode</button></div>
-            <div><button id="rainbow-button">Rainbow mode</button></div>
-            <div><button id="eraser-button">Eraser</button></div>
-            <div><button id="clear-button">Clear</button></div>
-        </div>
-        <div id="grid-container">
-
+    <div class="container">
+        <div class="title">Etch-a-Sketch</div>
+        <div class="main-container">
+            <div class="button-container">
+                <div><button id="squares-selection">Pick number of squares</button></div>
+                <div><button id="color-button">Color mode</button></div>
+                <div><button id="rainbow-button">Rainbow mode</button></div>
+                <div><button id="eraser-button">Eraser</button></div>
+                <div><button id="clear-button">Clear</button></div>
+            </div>
+            <div class="grid-container"></div>
+            <div class="hidden-container"></div>
         </div>
     </div>
+    <footer>
+        <div class="footer">Copyright © 2022 <a href="https://github.com/miguel-uni">miguel-uni</a></div>
+    </footer>
 </body>
 </html>
