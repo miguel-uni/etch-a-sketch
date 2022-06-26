@@ -1,3 +1,11 @@
+const black = '#333';
+const white = '#fefefe';
+const rainbow = getRandomColor();
+const defaultSize = 16;
+
+let currentColor = black;
+let currentSize = defaultSize;
+
 function createParentDivs(num) {
     for (let i = 1; i <= num; i++) {
         const gridContainer = document.querySelector('.grid-container');
@@ -33,12 +41,26 @@ function deleteDivs(cssSelector) {
     };
 };
 
+function getRandomColor() {
+    const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+    const r = randomBetween(0, 255);
+    const g = randomBetween(0, 255);
+    const b = randomBetween(0, 255);
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+    return rgb;
+};
+
 function paintSquares(color) {
     let allSquares = document.querySelectorAll('.square');
 
     allSquares.forEach((square) => {
         square.addEventListener('mouseover', () => {
-            square.style.backgroundColor = color;
+            if (color === rainbow) {
+                rgb = getRandomColor();
+                square.style.backgroundColor = rgb;
+            } else {
+                square.style.backgroundColor = color;
+            };
         });
     });
 };
@@ -55,35 +77,11 @@ function setNewSize() {
             deleteDivs('square-container');
             createParentDivs(num);
             createChildDivs(num);
-            paintSquares(defaulColor);
+            setCurrentSize(num);
+            paintSquares(currentColor);
         } else {
             return;
         };
-    });
-};
-
-function getRandomColor() {
-    const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-    const r = randomBetween(0, 255);
-    const g = randomBetween(0, 255);
-    const b = randomBetween(0, 255);
-    const rgb = `rgb(${r}, ${g}, ${b})`;
-    return rgb;
-};
-
-// function to use random colors to paint when button is clicked
-function setRainbowMode() {
-    const button = document.getElementById('rainbow-button');
-
-    button.addEventListener('click', () => {
-        let allSquares = document.querySelectorAll('.square');
-
-        allSquares.forEach((square) => {
-            square.addEventListener('mouseover', () => {
-                let rgb = getRandomColor();
-                square.style.backgroundColor = rgb;
-            });
-        });
     });
 };
 
@@ -92,7 +90,8 @@ function setButtonMode(id, color) {
     const button = document.getElementById(id);
 
     button.addEventListener('click', () => {
-        paintSquares(color);
+        setCurrentColor(color);
+        paintSquares(currentColor);
     });
 };
 
@@ -103,19 +102,25 @@ function clearGrid() {
     button.addEventListener('click', () => {
         deleteDivs('#child-div');
         deleteDivs('square-container');
-        createParentDivs(16);
-        createChildDivs(16);
-        paintSquares(defaulColor);
+        createParentDivs(currentSize);
+        createChildDivs(currentSize);
+        paintSquares(currentColor);
     });
 };
 
-const defaulColor = '#333';
+function setCurrentColor(color) {
+    currentColor = color;
+};
 
-createParentDivs(16);
-createChildDivs(16);
-paintSquares(defaulColor);
+function setCurrentSize(num) {
+    currentSize = num;
+};
+
+createParentDivs(defaultSize);
+createChildDivs(defaultSize);
+paintSquares(black);
 setNewSize();
-setRainbowMode();
-setButtonMode('eraser-button', '#fefefe');
-setButtonMode('color-button', defaulColor);
+setButtonMode('rainbow-button', rainbow);
+setButtonMode('eraser-button', white);
+setButtonMode('color-button', black);
 clearGrid();
