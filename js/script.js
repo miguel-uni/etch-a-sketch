@@ -70,14 +70,21 @@ function setNewSize() {
     const button = document.getElementById('squares-selection');
     
     button.addEventListener('click', () => {
-        let num = prompt('how many squares do you want?');
-    
-        if (num <= 100) {
+        let num = prompt('Set new grid size');
+
+        if ((num === null) || (num === String()) || (num <= 0)) {
+            return;
+        } else if (num <= 100) {
             deleteDivs('#child-div');
             deleteDivs('square-container');
             createParentDivs(num);
             createChildDivs(num);
             setCurrentSize(num);
+
+            if (currentColor === white) {
+                setCurrentColor(black);
+            };
+
             paintSquares(currentColor);
         } else {
             return;
@@ -104,6 +111,11 @@ function clearGrid() {
         deleteDivs('square-container');
         createParentDivs(currentSize);
         createChildDivs(currentSize);
+
+        if (currentColor === white) {
+            setCurrentColor(black);
+        };
+
         paintSquares(currentColor);
     });
 };
