@@ -5,6 +5,7 @@ const defaultSize = 16;
 
 let currentColor = black;
 let currentSize = defaultSize;
+let lastColor;
 
 function createParentDivs(num) {
     for (let i = 1; i <= num; i++) {
@@ -82,7 +83,7 @@ function setNewSize() {
             setCurrentSize(num);
 
             if (currentColor === white) {
-                setCurrentColor(black);
+                setCurrentColor(lastColor);
             };
 
             paintSquares(currentColor);
@@ -97,6 +98,9 @@ function setButtonMode(id, color) {
     const button = document.getElementById(id);
 
     button.addEventListener('click', () => {
+        if (currentColor !== color) {
+            setLastColor(currentColor);
+        };
         setCurrentColor(color);
         paintSquares(currentColor);
     });
@@ -113,7 +117,7 @@ function clearGrid() {
         createChildDivs(currentSize);
 
         if (currentColor === white) {
-            setCurrentColor(black);
+            setCurrentColor(lastColor);
         };
 
         paintSquares(currentColor);
@@ -122,6 +126,10 @@ function clearGrid() {
 
 function setCurrentColor(color) {
     currentColor = color;
+};
+
+function setLastColor(color) {
+    lastColor = color;
 };
 
 function setCurrentSize(num) {
